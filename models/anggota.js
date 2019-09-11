@@ -1,9 +1,9 @@
 const mongoose= require('mongoose');
 
-const anggtaSchema=mongoose.Schema({
+const anggotaSchema = mongoose.Schema({
     _id : mongoose.Types.ObjectId,
     nama : String,
-    alamat : Text
+    alamat : String,
 });
 
-module.exports=mongoose.model('Daftar',anggotaSchema);
+module.exports=mongoose.model('daftar',anggotaSchema);

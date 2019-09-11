@@ -9,8 +9,8 @@ var mongoose= require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-//connection
-mongoose.connect('mongodb://localhost/madu');
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017');
 //connection ke db
 var db = mongoose.connection  
 db.on('error', console.error.bind(console, 'connection error:'));  
