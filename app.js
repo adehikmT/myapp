@@ -4,19 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // inisialisasi
-var mongoose= require('mongoose');
+// var mongoose= require('mongodb');
+// var assert=require('assert');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017');
+// mongoose.connect('mongodb://localhost:27017');
 //connection ke db
-var db = mongoose.connection  
-db.on('error', console.error.bind(console, 'connection error:'));  
-db.once('open', function() {  
-    console.log('connection success');
-});
+// var db = mongoose.connection  
+// db.on('error', console.error.bind(console, 'connection error:'));  
+// db.once('open', function() {  
+//     console.log('connection success');
+// });
 
 var app = express();
 

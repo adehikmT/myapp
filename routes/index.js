@@ -1,14 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
+var mongo= require('mongodb');
+var assert=require('assert');
+var url='mongodb://localhost:27017/madu';
+
 // const Daftar=require('../myapp/models/anggota');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('umum/home', { title: 'Daftar Peternak', layout : 'umum/layout/index.hbs'});
+  res.render('umum/home', { title: 'Page Home', layout : 'umum/layout/index.hbs'});
 });
 
-router.get('/artikel', function(req, res, next) {
-  res.render('umum/artikel', { title: 'artikel page', layout : 'umum/layout/index.hbs'});
+router.get('/daftarPeternak', function(req, res, next) {
+  res.render('umum/daftarPeternak', { title: 'Daftar Peternak', layout : 'umum/layout/index.hbs'});
 });
 
 router.get('/produk', function(req, res, next) {
@@ -18,6 +22,13 @@ router.get('/produk', function(req, res, next) {
 router.get('/kelompoktanihutan', function(req, res, next) {
   res.render('umum/kth', { title: 'Produk', layout : 'umum/layout/index.hbs'});
 });
+ 
+//home page kelompok
+
+router.get('/kelompok',function(req,res,next){
+  res.render('kelompok/home',{title: 'Kelompok Bina Lestari', layout : 'umum/layout/index2.hbs'});
+})
+
 
 // admin routes
 
@@ -40,6 +51,20 @@ router.get('/lebah', function(req, res, next) {
 router.get('/panen', function(req, res, next) {
   res.render('admin/panen/index', { title: 'Panen', aktif: 5, layout : 'admin/layout/tamplate.hbs'});
 });
+
+//post
+router.post('/insert',function(req,rss,next){
+   var item={nama : "ade", alamat : "panjalu"}
+mongo.connect(url,function(err,db){
+   assert.equal(null,err);
+   db.collection('anggota').insertOne(item,function(err,rss){
+    assert.equal(null,err);
+    console.log('insert data berhasil');
+    db.close();
+    });
+   });
+  });
+
 module.exports = router;
 
 //model
